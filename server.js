@@ -1,6 +1,7 @@
 const app = require(`./app`);
 const { port } = require("./config/config");
 const { checkDbConnection } = require("./config/database");
+const { deleteUnverifiedUser } = require("./middlewares/taskScheduler");
 
 // Handle Uncaught Exception
 process.on(`uncaughtException`, (error) => {
@@ -14,6 +15,9 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
     path: "config/.env",
   });
 }
+
+// deleting unverified User
+deleteUnverifiedUser.start();
 
 // Database Connection
 checkDbConnection();
