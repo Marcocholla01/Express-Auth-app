@@ -1,12 +1,8 @@
 const mysql = require("mysql2");
-const { promisify } = require("util");
 const { databaseConfig } = require("./config");
 
 // Create a connection pool
 const db = mysql.createPool(databaseConfig);
-
-// Promisify the query method
-db.query = promisify(db.query).bind(db);
 
 // Function to check the database connection
 const checkDbConnection = async () => {
