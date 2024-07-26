@@ -28,4 +28,13 @@ app.use((req, res, next) => {
   res.status(404).sendFile(path.join(__dirname, "public", "404.html"));
 });
 
+// errorHandling middlewares
+app.use((error, req, res, next) => {
+  console.log(error.stack);
+  res.status(500).json({
+    success: false,
+    message: error.message,
+  });
+});
+
 module.exports = app;

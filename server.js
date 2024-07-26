@@ -1,4 +1,5 @@
 const app = require(`./app`);
+const { port } = require("./config/config");
 const { checkDbConnection } = require("./config/database");
 
 // Handle Uncaught Exception
@@ -18,10 +19,8 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 checkDbConnection();
 
 // create server
-const server = app.listen(process.env.PORT, () => {
-  console.log(
-    `server is running on http://localhost:${process.env.PORT}`.magenta
-  );
+const server = app.listen(port, () => {
+  console.log(`server is running on http://localhost:${port}`.magenta);
 });
 
 // unhandled promise rejection

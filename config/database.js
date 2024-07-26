@@ -1,26 +1,9 @@
 const mysql = require("mysql2");
 const { promisify } = require("util");
-
-// Load environment variables
-if (process.env.NODE_ENV !== "PRODUCTION") {
-  require("dotenv").config({
-    path: "config/.env",
-  });
-}
-
-// Database configuration
-const config = {
-  host: process.env.DATABASE_HOST,
-  user: process.env.DATABASE_USER,
-  database: process.env.DATABASE_NAME,
-  password: process.env.DATABASE_PASSWORD,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-};
+const { databaseConfig } = require("./config");
 
 // Create a connection pool
-const db = mysql.createPool(config);
+const db = mysql.createPool(databaseConfig);
 
 // Promisify the query method
 db.query = promisify(db.query).bind(db);
