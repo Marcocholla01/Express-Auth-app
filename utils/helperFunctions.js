@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 
-// const uuid = crypto.randomUUID();
+// const generateUUID = crypto.randomUUID();
 
 //  Functin for Generating UUID Math.random method
 function generateUUID() {

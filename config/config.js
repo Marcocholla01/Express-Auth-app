@@ -11,6 +11,7 @@ const databaseConfig = {
   user: process.env.DATABASE_USER,
   database: process.env.DATABASE_NAME,
   password: process.env.DATABASE_PASSWORD,
+  port: process.env.DATABASE_PORT,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,

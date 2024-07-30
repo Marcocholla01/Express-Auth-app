@@ -8,11 +8,13 @@ const db = mysql.createPool(databaseConfig);
 const checkDbConnection = async () => {
   db.getConnection((error, connection) => {
     if (error) {
-      console.log("Failed to connect to the database:".red, error.message);
+      console.log(
+        `Failed to connect to the database: ${error.message}`.red.italic
+      );
       return;
     }
     if (connection) connection.release();
-    console.log("Database connection established".cyan);
+    console.log(`Database connection established`.cyan.italic);
   });
 };
 

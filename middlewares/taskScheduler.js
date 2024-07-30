@@ -16,10 +16,14 @@ const deleteUnverifiedUser = cron.schedule("* * * * *", async () => {
     const result = await query(deleteQuery);
 
     if (result.affectedRows > 0) {
-      console.log(`Deleted ${result.affectedRows} unVerified users.`);
+      console.log(
+        `Deleted ${result.affectedRows} unVerified users.`.yellow.italic
+      );
     }
   } catch (error) {
-    console.error("Error deleting unVerified users:", error.message);
+    console.error(
+      `Error deleting unVerified users: ${error.message}`.red.italic
+    );
   }
 });
 

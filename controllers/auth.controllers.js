@@ -17,12 +17,14 @@ const sendMail = require("../utils/sendMail");
 const query = promisify(db.query).bind(db);
 
 const createUser = asyncHandler(async (req, res) => {
-  const { firstName, lastName, contact, username, email, password } = req.body;
+  const { firstName, lastName, phoneNumber, username, email, password } =
+    req.body;
   const userId = generateUUID();
-  const checkQuery = `SELECT * FROM users WHERE email = ? OR contact = ?`;
+  const checkQuery = `SELECT * FROM users WHERE email = ? OR phoneNumber = ?`;
+  const updatedAt = new Date();
   const insertUserQuery = `
-      INSERT INTO users (userId, firstName, lastName, username, email, contact, password)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO users (userId, firstName, lastName, username, email, phoneNumber, password, updatedAt)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
   //   console.log(req.body);
   //   console.log(userId);
@@ -33,7 +35,7 @@ const createUser = asyncHandler(async (req, res) => {
       !username ||
       !email ||
       !password ||
-      !contact
+      !phoneNumber
     ) {
       return res.status(400).json({
         success: false,
@@ -44,7 +46,7 @@ const createUser = asyncHandler(async (req, res) => {
     const hashPassword = bcrypt.hashSync(password, 10);
 
     // Check if the user already exists
-    const existingUsers = await query(checkQuery, [email, contact]);
+    const existingUsers = await query(checkQuery, [email, phoneNumber]);
 
     if (existingUsers.length > 0) {
       return res.status(400).json({
@@ -62,8 +64,9 @@ const createUser = asyncHandler(async (req, res) => {
       lastName,
       username,
       email,
-      contact,
+      phoneNumber,
       hashPassword,
+      updatedAt,
     ];
 
     const result = await query(insertUserQuery, newUser);
@@ -203,7 +206,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const { identifier, password } = req.body;
 
   try {
-    const checkQuery = `SELECT * FROM users WHERE email = ? OR username = ? OR contact = ? `;
+    const checkQuery = `SELECT * FROM users WHERE email = ? OR username = ? OR phoneNumber = ? `;
 
     // Check if user exists
     const users = await query(checkQuery, [identifier, identifier, identifier]);
@@ -220,7 +223,7 @@ const loginUser = asyncHandler(async (req, res) => {
     if (user.isActive === 0) {
       return res.status(403).json({
         success: false,
-        message: `Account suspended please contact admin for more inquiries`,
+        message: `Account suspended please phoneNumber admin for more inquiries`,
       });
     }
 
@@ -252,7 +255,7 @@ const loginUser = asyncHandler(async (req, res) => {
     );
 
     // Set cookie
-    res.cookie("access_token", token, {
+    res.cookie("accessToken", token, {
       httpOnly: true,
       secure: true,
       sameSite: "none",
@@ -264,6 +267,13 @@ const loginUser = asyncHandler(async (req, res) => {
       success: true,
       message: "Login successful",
       token,
+      user: {
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+      },
     });
   } catch (error) {
     return res.status(500).json({
@@ -283,7 +293,7 @@ const logoutUser = asyncHandler(async (req, res) => {
       });
     }
     // Clear the JWT cookie
-    res.cookie("access_token", "", {
+    res.cookie("accessToken", "", {
       maxAge: 0,
       httpOnly: true,
       secure: true,
@@ -359,13 +369,13 @@ const forgotPassword = asyncHandler(async (req, res) => {
 const resetPassword = asyncHandler(async (req, res) => {
   const { resetToken } = req.params;
   const { newPassword, confirmNewPassword } = req.body;
-
+  console.log(req.body);
   try {
     // Validate input data
     if (!newPassword || !confirmNewPassword) {
       return res.status(400).json({
         success: false,
-        message: "New password is required",
+        message: "all password fields are required",
       });
     }
 

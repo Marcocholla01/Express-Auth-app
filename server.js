@@ -5,7 +5,7 @@ const { deleteUnverifiedUser } = require("./middlewares/taskScheduler");
 
 // Handle Uncaught Exception
 process.on(`uncaughtException`, (error) => {
-  console.log(`ERROR: ${error.message}`);
+  console.log(`ERROR: ${error.stack}`.red.italic);
   console.log(`shutting down the server for handling uncaught exception`);
 });
 
@@ -24,12 +24,12 @@ checkDbConnection();
 
 // create server
 const server = app.listen(port, () => {
-  console.log(`server is running on http://localhost:${port}`.magenta);
+  console.log(`server is running on http://localhost:${port}`.magenta.italic);
 });
 
 // unhandled promise rejection
 process.on(`unhandledRejection`, (error) => {
-  console.log(`shutting down the server for ${error.message}`);
+  console.log(`shutting down the server for ${error.stack}`.red.italic);
   console.log(`shutting down the server for unhandled promise rejection`);
 
   // then close the server

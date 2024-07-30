@@ -6,17 +6,20 @@ const { promisify } = require("util");
 const query = promisify(db.query).bind(db);
 
 const authenticated = async (req, res, next) => {
-  //   const token = req.cookies.access_token;
-  const token = req.header("Authorization").replace("Bearer ", "");
+  // console.log(req.headers);
+  const accessToken = req.cookies.accessToken;
+  // const accessToken = req.header("Authorization").replace("Bearer ", "");
+  // const accessToken = req.header("cookie")?.replace("accessToken=", "");
+  console.log("accessToken is: ", accessToken);
 
   try {
-    if (!token) {
+    if (!accessToken) {
       return res
         .status(401)
         .json({ success: false, message: "Please login to continue" });
     }
 
-    const decoded = jwt.verify(token, JWT_SECRET_KEY);
+    const decoded = jwt.verify(accessToken, JWT_SECRET_KEY);
     const userQuery = "SELECT userId, role FROM users WHERE userId = ?";
     const userResult = await query(userQuery, [decoded.userId]);
 
