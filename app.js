@@ -11,22 +11,24 @@ app.use(cookiParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const authRoutes = require(`./routers/auth.routes`);
-
-app.use(`/api/v1/auth`, authRoutes);
-
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, "public")));
 
-// Define your routes here
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
+const appPages = require(`./routers/pages.routes`);
+const authRoutes = require(`./routers/auth.routes`);
 
-// Middleware to handle 404 - Not Found
-app.use((req, res, next) => {
-  res.status(404).sendFile(path.join(__dirname, "public", "404.html"));
-});
+app.use(appPages);
+app.use(`/api/v1/auth`, authRoutes);
+
+// Define your routes here
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "public", "index.html"));
+// });
+
+// route to handle 404 - Not Found or  wild card routes
+// app.get("*", (req, res) => {
+//   res.status(404).sendFile(path.join(__dirname, "public", "404.html"));
+// });
 
 // errorHandling middlewares
 app.use((error, req, res, next) => {
