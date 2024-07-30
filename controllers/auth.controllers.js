@@ -24,7 +24,7 @@ const createUser = asyncHandler(async (req, res) => {
   // const createdAt = new Date();
   // const updatedAt = new Date();
   const insertUserQuery = `
-      INSERT INTO users (userId, firstName, lastName, username, email, phoneNumber, password, craetedAt = NOW(), updatedAt = NOW())
+      INSERT INTO users (userId, firstName, lastName, username, email, phoneNumber, password, createdAt = NOW(), updatedAt = NOW())
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
   //   console.log(req.body);
