@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 }
 
 // deleting unverified User
-deleteUnverifiedUser.start();
+// deleteUnverifiedUser.start();
 
 // Database Connection
 checkDbConnection();
@@ -25,9 +25,7 @@ checkDbConnection();
 // create server
 const server = app.listen(port, () => {
   console.log(`server is running on http://localhost:${port}`.magenta.italic);
-  console.log(
-    `Project home page: https://auth-it.onrender.com`.magenta.italic
-  );
+  console.log(`Project home page: https://auth-it.onrender.com`.magenta.italic);
 });
 
 // unhandled promise rejection
