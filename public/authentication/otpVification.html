@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/styles/main.css" />
+    <title>Account Verification</title>
+    <style>
+      body {
+        font-family: "Poppins";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        color: #333;
+      }
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+      }
+      .container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .container form {
+        display: flex;
+        flex-direction: column;
+      }
+      .container form input {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .container form button {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .container form button:hover {
+        background-color: #0056b3;
+      }
+      /* Custom Error Alert Styles */
+      .error-alert {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+      .error-alert .alert-box {
+        background-color: #ff4d4d;
+        color: white;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+        max-width: 300px;
+        width: 100%;
+      }
+      .error-alert .alert-box button {
+        background-color: white;
+        color: #ff4d4d;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 15px;
+        cursor: pointer;
+      }
+      .error-alert .alert-box button:hover {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Verify Your Account</h2>
+      <form id="verifyForm">
+        <input
+          type="text"
+          name="verificationCode"
+          placeholder="Verification Code"
+          required
+        />
+        <button type="submit">Verify</button>
+      </form>
+    </div>
+    <div class="error-alert" id="errorAlert">
+      <div class="alert-box">
+        <p id="errorMessage">An error occurred.</p>
+        <button onclick="closeErrorAlert()">Close</button>
+      </div>
+    </div>
+    <script>
+      document
+        .getElementById("verifyForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
+          const form = event.target;
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData.entries());
+
+          try {
+            const response = await fetch("/verify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            });
+            const result = await response.json();
+            console.log(result);
+            if (response.ok) {
+              alert("Verification successful");
+              window.location.href = "/login";
+            } else {
+              showErrorAlert(result.message || "Verification failed");
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            showErrorAlert("An error occurred. Please try again.");
+          }
+        });
+
+      function showErrorAlert(message) {
+        const errorAlert = document.getElementById("errorAlert");
+        const errorMessage = document.getElementById("errorMessage");
+        errorMessage.textContent = message;
+        errorAlert.style.display = "flex";
+      }
+
+      function closeErrorAlert() {
+        const errorAlert = document.getElementById("errorAlert");
+        errorAlert.style.display = "none";
+      }
+    </script>
+  </body>
+</html>

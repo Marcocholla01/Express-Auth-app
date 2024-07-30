@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/styles/main.css" />
+    <link rel="stylesheet" href="../static/styles/register.css" />
+    <title>Register</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Register</h2>
+      <form id="registerForm">
+        <input type="text" name="firstName" placeholder="First Name" required />
+        <input type="text" name="lastName" placeholder="Last Name" required />
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="phone" name="phoneNumber" placeholder="Phone" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <button type="submit">Register</button>
+        <p style="padding-top: 10px">
+          Already have an account? <a href="/login">login</a>
+        </p>
+      </form>
+    </div>
+    <div class="toast" id="toast"></div>
+    <script defer src="../static/javascript/register.js"></script>
+    <script defer src="../static/javascript/showToast.js"></script>
+    <script defer src="../static/javascript/loadUser.js"></script>
+  </body>
+</html>

@@ -3,119 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Medula+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="./static/styles/main.css" />
+    <link rel="stylesheet" href="./static/styles/index.css" />
     <title>Auth Project</title>
-    <style>
-      body {
-        font-family: "Poppins";
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        color: #333;
-      }
-      .container {
-        text-align: center;
-        max-width: 800px;
-        padding: 40px 20px;
-        border-radius: 10px;
-        background-color: #fff;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-      }
-      .container:hover {
-        transform: scale(1.02);
-      }
-      h1 {
-        font-size: 3rem;
-        font-family: "Medula One", system-ui;
-        margin-bottom: 20px;
-        color: #007bff;
-      }
-      p {
-        font-size: 1.2rem;
-        margin-bottom: 20px;
-      }
-      .section {
-        margin-bottom: 30px;
-      }
-      .section h2 {
-        font-size: 1.8rem;
-        font-family: "JetBrains Mono", monospace;
-        margin-bottom: 10px;
-        color: #333;
-      }
-      .section ul {
-        list-style: none;
-        padding: 0;
-      }
-      .section li {
-        margin-bottom: 10px;
-        text-align: left;
-      }
-      .tech-list ul {
-        display: flex;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        justify-content: center; /* Center the list items */
-      }
-      .tech-list li {
-        margin-right: 20px;
-        font-size: 1rem;
-        color: #333;
-      }
-      .tech-list li:last-child {
-        margin-right: 0;
-      }
-      .developer-details a {
-        color: #007bff;
-        text-decoration: none;
-        transition: color 0.3s;
-      }
-      .developer-details a:hover {
-        color: #0056b3;
-        text-decoration: underline;
-      }
-      .btn {
-        display: inline-block;
-        padding: 12px 24px;
-        font-size: 1rem;
-        color: #fff;
-        background-color: #28a745;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s, transform 0.3s;
-      }
-      .btn:hover {
-        background-color: #218838;
-        transform: scale(1.05);
-      }
-      .illustration {
-        margin-bottom: 20px;
-      }
-      .illustration img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 10px;
-      }
-    </style>
   </head>
   <body>
     <div class="container">
       <div class="illustration">
         <img src="assets/auth-image.avif" alt="Auth Project" />
       </div>
-      <h1>Auth Project</h1>
+      <h1>Auth IT</h1>
       <p>
-        Welcome to the Auth Project! This project provides a robust
+        Welcome to the <strong>Auth IT</strong>! This project provides a robust
         authentication system for your applications.
       </p>
 
@@ -138,10 +37,10 @@
             <strong>Password Reset:</strong> Provides functionality for users to
             reset their passwords if they forget them.
           </li>
-          <li>
+          <!-- <li>
             <strong>User Roles:</strong> Supports different user roles (e.g.,
             user, admin) with appropriate access controls.
-          </li>
+          </li> -->
           <li>
             <strong>Session Management:</strong> Manages user sessions securely
             to keep users logged in.
@@ -156,9 +55,21 @@
       <div class="section tech-list">
         <h2>Technologies Used:</h2>
         <ul>
-          <li>Express</li>
-          <li>Node.js</li>
+          <li>HTML 5</li>
+          <li>CSS 3</li>
+          <li>Vanilla.js</li>
           <li>MySQL</li>
+          <li>Express.js</li>
+          <li>Node.js</li>
+        </ul>
+      </div>
+      <div class="section developer-details">
+        <h2>Project Demo:</h2>
+        <ul>
+          <li>
+            <strong>Click this link to view demo:</strong>
+            <a href="/register" target="_blank">Project Demo</a>
+          </li>
         </ul>
       </div>
 
@@ -166,17 +77,36 @@
         <h2>Developer Details:</h2>
         <ul>
           <li><strong>Name:</strong> Paul Ocholla</li>
-          <li><strong>Email:</strong> marcochollapaul01@gmail.com</li>
+          <li>
+            <strong>Email:</strong>
+            <a
+              href="mailto:marcochollapaul01@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >marcochollapaul01@gmail.com</a
+            >
+          </li>
           <li>
             <strong>GitHub Profile:</strong>
             <a href="https://github.com/Marcocholla01" target="_blank"
               >https://github.com/Marcocholla01</a
             >
           </li>
-          <li><strong>Contact:</strong> +254742275513</li>
+          <li>
+            <strong>Contact:</strong>
+            <a
+              href="tel:+254742275513"
+              target="_blank"
+              rel="noopener noreferrer"
+              >+254742275513</a
+            >
+          </li>
           <li>
             <strong>Portfolio:</strong>
-            <a href="https://marcocholla001.onrender.com" target="_blank"
+            <a
+              href="https://marcocholla001.onrender.com"
+              target="_blank"
+              rel="noopener noreferrer"
               >https://marcocholla001.onrender.com</a
             >
           </li>
@@ -185,9 +115,12 @@
       <a
         class="btn"
         href="https://marcocholla001.onrender.com/static/media/Paul%20Ouma%20Ocholla%20Resume.b62cc74564956277cdc8.pdf"
-        download="Paul_Resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        download="Paul-Ocholla-Resume.pdf"
         >Download Resume</a
       >
     </div>
+    <script defer src="./static/javascript/loadUser.js"></script>
   </body>
 </html>
