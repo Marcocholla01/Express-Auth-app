@@ -14,7 +14,10 @@ const checkDbConnection = async () => {
       return;
     }
     if (connection) connection.release();
-    console.log(`Database connection established`.cyan.italic);
+    console.log(
+      `Database connection established on DATABASE_HOST: ${databaseConfig.host} and DATABASE_NAME: ${databaseConfig.database}`
+        .cyan.italic
+    );
   });
 };
 

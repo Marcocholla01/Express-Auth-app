@@ -1,16 +1,52 @@
 {
-  "name": "auth",
+  "name": "auth-it",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project provides a robust authentication system for your applications",
+  "homepage": "https://marcocholla001.onrender.com",
   "main": "app.js",
+  "author": {
+    "name": "PAUL OCHOLLA",
+    "username": "Marcocholla01",
+    "email": "marcochollapaul01@gmail.com",
+    "url": "https://marcocholla001.onrender.com"
+  },
+  "publisher": "Marcocholla01",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Marcocholla01/Express-Auth-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Marcocholla01/Express-Auth-app/issues"
+  },
+  "engines": {
+    "npm": ">=6",
+    "node": ">=12"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "jwt",
+    "cookies",
+    "Vanilla.js",
+    "HTML5",
+    "CSS3",
+    "express.js",
+    "mysql",
+    "auth"
+  ],
+  "files": [
+    "config",
+    "controllers",
+    "middlewares",
+    "public",
+    "routes",
+    "utils",
+    "app.js",
+    "server.js"
+  ],
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",

@@ -15,8 +15,8 @@ const sendMail = async (options) => {
   const transpoter = nodemailer.createTransport({
     host: SMTP_HOST,
     port: SMTP_PORT,
-    // secure: true,
-    // service: SMTP_SERVICE,
+    secure: true,
+    service: SMTP_SERVICE,
     auth: {
       user: SMTP_MAIL,
       pass: SMTP_PASSWORD,

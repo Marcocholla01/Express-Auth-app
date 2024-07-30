@@ -184,6 +184,7 @@ const verifyUser = asyncHandler(async (req, res) => {
         text: `Your account has been activated successfully`,
       });
     } catch (error) {
+      console.log(error.stack);
       return res.status(500).json({
         success: false,
         message:
