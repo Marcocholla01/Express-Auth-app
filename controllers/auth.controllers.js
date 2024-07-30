@@ -21,9 +21,10 @@ const createUser = asyncHandler(async (req, res) => {
     req.body;
   const userId = generateUUID();
   const checkQuery = `SELECT * FROM users WHERE email = ? OR phoneNumber = ?`;
-  const updatedAt = new Date();
+  // const createdAt = new Date();
+  // const updatedAt = new Date();
   const insertUserQuery = `
-      INSERT INTO users (userId, firstName, lastName, username, email, phoneNumber, password, updatedAt)
+      INSERT INTO users (userId, firstName, lastName, username, email, phoneNumber, password, craetedAt = NOW(), updatedAt = NOW())
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
   //   console.log(req.body);
@@ -66,7 +67,8 @@ const createUser = asyncHandler(async (req, res) => {
       email,
       phoneNumber,
       hashPassword,
-      updatedAt,
+      // createdAt,
+      // updatedAt,
     ];
 
     const result = await query(insertUserQuery, newUser);

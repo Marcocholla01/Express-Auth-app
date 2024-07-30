@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 }
 
 // deleting unverified User
-// deleteUnverifiedUser.start();
+deleteUnverifiedUser.start();
 
 // Database Connection
 checkDbConnection();
