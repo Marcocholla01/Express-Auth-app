@@ -25,6 +25,9 @@ checkDbConnection();
 // create server
 const server = app.listen(port, () => {
   console.log(`server is running on http://localhost:${port}`.magenta.italic);
+  console.log(
+    `server is running on https://auth-it.onrender.com:${port}`.magenta.italic
+  );
 });
 
 // unhandled promise rejection
